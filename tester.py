@@ -1,18 +1,16 @@
 from classifier import Classifier
-from coach import Coach
+from fit import Fit
 
 
 
 class Tester:
     def __init__(self, df, target):
-        # self.__df = df
-        # self.__classifier = df.value_counts(target)
-        # self.__practice = df.iloc[:len(df) * 70 // 100]
-        # self.__test = df.iloc[len(df) * 70 // 100:]
+        self.__practice = df.iloc[:len(df) * 70 // 100]
+        self.__test = df.iloc[len(df) * 70 // 100:]
         self.__random = df.sample(frac=0.7)
         self.__practice = self.__random
         self.__test = df.drop(self.__random.index)
-        self.__coach = Coach(self.__practice, target).get_data_by_categories()
+        self.__coach = Fit(self.__practice, target).get_data_by_categories()
         self.__classifier_class = Classifier(self.__coach, df.value_counts(target))
 
 

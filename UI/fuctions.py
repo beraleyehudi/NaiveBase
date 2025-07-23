@@ -1,9 +1,6 @@
-from UI.prints import Prints
 from classifier import Classifier
-from cleaner import Cleaner
-from coach import Coach
+from fit import Fit
 from UI.prints import Prints
-from receprtor import Receptor
 from tester import Tester
 
 class Functions:
@@ -16,6 +13,7 @@ class Functions:
             print(f"{i + 1}: {options[i]}")
         while not valid:
             choice = int(input("enter your choice:\n"))
+            valid = True
             try:
                 choose = options[choice - 1]
             except:
@@ -29,9 +27,9 @@ class Functions:
         return functions[options.index(option)](*args)
 
     @staticmethod
-    def fill(df, classify):
-        columns = list(df.columns.drop(classify))
-        features = [0 for i in range(len(columns))]
+    def fill(df, target):
+        columns = list(df.columns.drop(target))
+        features = [0 for _ in range(len(columns))]
         # exit = False
         # while not exit:
         while columns:
@@ -41,10 +39,10 @@ class Functions:
             columns.remove(category)
 
         print(Prints.RESULT_OF_CLASSIFIER)
-        print(Classifier(Coach(df, classify), df.value_counts(classify)).classifies(features))
+        print(Classifier(Fit(df, target), df.value_counts(target)).classifies(features))
 
     @staticmethod
-    def test(df, classify):
+    def test(df, target):
         print(Prints.ACCURACY_PERCENTAGES)
-        print(f'{Tester(df, classify).teke_test()}%')
+        print(f'{Tester(df, target).teke_test()}%')
 
