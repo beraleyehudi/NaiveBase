@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["fastapi", "run", "classifier_server.py", "--port", "8000"]
+CMD ["fastapi", "run", "server.py", "--port", "8000"]

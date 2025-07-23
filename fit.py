@@ -14,7 +14,7 @@ class Fit:
     #
     #     return dictionary
 
-    def get_data_by_categories(self):
+    def get_data_modle(self):  
         dictionary = {}
         for i in range(len(self.__columns)):
             series = self.__df.groupby(self.__target)[self.__columns[i]].value_counts()
