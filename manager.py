@@ -1,24 +1,23 @@
-from data_manage.cleaner import Cleaner
-from UI.prints import Prints
-from UI.fuctions import Functions
-from UI.data import Data
-from data_manage.receprtor import Receptor
-
+import pandas as pd
+import requests
 
 class Manager:
     @staticmethod
-    def start(csv):
-        print(Prints.WELCOME)
-        # df = Receptor(input(Prints.enter_file())).df
-        df = Manager.get_df(csv)
-        classify = Functions.menu(Prints.SELECT_CLASSIFY, df.columns)
-
-        choice = Functions.menu(Prints.WHAT_TO_DO, Data.WHAT_TO_DO_OPTIONS)
-        Functions.switch(choice, Data.WHAT_TO_DO_OPTIONS, Data.WHAT_TO_DO_FUNCTIONS, df, classify)
-
+    def reconstruct_data(json_data):
+        reconstructed = {}
+        for key, records in json_data.items():
+         reconstructed[int(key)] = pd.DataFrame(records)
+        return reconstructed
+    
     @staticmethod
-    def get_df(csv):
-        return Cleaner(Receptor(csv).df).df
-
-
-
+    def get_data():
+        data_response = requests.get("http://127.0.0.1/:80/get fit data")
+        data = Manager.reconstruct_data(data_response.json())
+        return data
+        
+    
+    @staticmethod
+    def get_value_counts():
+        value_counts_response = requests.get("http://127.0.0.1/:80/get value counts")
+        value_count = Manager.reconstruct_data(value_counts_response.json())
+        return value_count
