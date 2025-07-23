@@ -11,7 +11,7 @@ value_counts = GetData.value_counts
 
 @app.get("/")
 def root():
-    return f"this is root"
+    return f"this is v2 root"
 
 # @app.get("/test")
 # def test():
