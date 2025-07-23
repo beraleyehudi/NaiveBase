@@ -11,13 +11,13 @@ class Manager:
     
     @staticmethod
     def get_data():
-        data_response = requests.get("http://127.0.0.1/:80/get fit data")
+        data_response = requests.get("http:v1-runing:8000/get fit data")
         data = Manager.reconstruct_data(data_response.json())
         return data
         
     
     @staticmethod
     def get_value_counts():
-        value_counts_response = requests.get("http://127.0.0.1/:80/get value counts")
+        value_counts_response = requests.get("http:v1-runing:8000/get value counts")
         value_count = Manager.reconstruct_data(value_counts_response.json())
         return value_count
