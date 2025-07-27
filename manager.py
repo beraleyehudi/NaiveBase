@@ -16,4 +16,4 @@ class Manager:
     def get_value_counts(): 
         df = Manager.get_data()
         target = df.columns[-1]
-        return df.value_counts(target).reset_index(name="count").to_dict(orient="records")
+        return df.value_counts(target)

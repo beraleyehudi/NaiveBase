@@ -7,18 +7,18 @@ class Fit:
 
 
 
-    # def get_data_by_categories(self):
-    #     dictionary = {}
-    #     for i in range(len(self.__columns)):
-    #         dictionary[i] = self.__df.groupby(self.__target)[self.__columns[i]].value_counts()
-    #
-    #     return dictionary
-
-    def get_data_modle(self):  
+    def get_data_by_categories(self):
         dictionary = {}
         for i in range(len(self.__columns)):
-            series = self.__df.groupby(self.__target)[self.__columns[i]].value_counts()
-            df = series.reset_index(name="count")  # נהפוך לסוג DataFrame שטוח
-            dictionary[i] = df.to_dict(orient="records")  # JSON-ידידותי
+            dictionary[i] = self.__df.groupby(self.__target)[self.__columns[i]].value_counts()
+    
         return dictionary
+
+    # def get_data_modle(self):  
+    #     dictionary = {}
+    #     for i in range(len(self.__columns)):
+    #         series = self.__df.groupby(self.__target)[self.__columns[i]].value_counts()
+    #         df = series.reset_index(name="count")  # נהפוך לסוג DataFrame שטוח
+    #         dictionary[i] = df.to_dict(orient="records")  # JSON-ידידותי
+    #     return dictionary
 
