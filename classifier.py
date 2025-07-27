@@ -39,7 +39,7 @@ class Classifier:
 
     def classifies(self, list_of_features):
 
-        # d = self.probability_of_classifier(list_of_features)
+        d = self.probability_of_classifier(list_of_features)
 
-        # return max(d, key=d.get)
-        return("medium")
+        return max(d, key=d.get)
+        # return("medium")
