@@ -1,3 +1,4 @@
+import pandas as pd
 class Fit:
     def __init__(self, df, target):
         self.__df = df
