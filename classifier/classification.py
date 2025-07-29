@@ -22,7 +22,6 @@ class Classifier:
             proportion = self.__classifiers[current_classifier]
             values_of_features = []
             for i in range(len(list_of_features)):
-                # print(self.__sub_tables(i))
                 try:
                     values_of_features.append(self.__sub_tables[i][current_classifier][list_of_features[i]])
                 except:
@@ -42,4 +41,4 @@ class Classifier:
         d = self.probability_of_classifier(list_of_features)
 
         return max(d, key=d.get)
-        # return("medium")
+       
