@@ -1,33 +1,16 @@
-from fit import Fit
 from fastapi import FastAPI
 from manager import Manager
-import pickle
-import pandas as pd
 
 app = FastAPI()
-
-
-
-
 @app.get("/")
 def root():
-    return f"this is root of v1 server"
+    return f"this is root of naive base (v1) server"
 
-@app.get("/get value counts")
-def get_value_counts():
-    return pickle.dumps(Manager.get_value_counts()).hex()
-    
-
-@app.get("/get fit data")
-def get_fit_data():
-    df = Manager.get_data()
-    target = df.columns[-1]
-    
-    return pickle.dumps(Fit(df, target).get_data_by_categories()).hex()
-    
-       
-    
-
-
-
-
+@app.get("/enter features/{string_of_features}")
+def enter_features(string_of_features: str):
+    """
+    Endpoint to classify the input features.
+    :param string_of_features: Comma-separated string of features.
+    :return: Classification result.
+    """
+    return f"the result of these features, is: {Manager.classifiication_result(string_of_features)}"
