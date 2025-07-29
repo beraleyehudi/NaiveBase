@@ -1,7 +1,7 @@
 from model.data_manage.cleaner import Cleaner
 from model.data_manage.receptor import Receptor
 from model.fit import Fit
-from classifier.classifier import Classifier
+from classifier.classification import Classifier
 
 class Manager:
     
