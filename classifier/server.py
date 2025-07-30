@@ -3,7 +3,7 @@ from manager import Manager
 
 app = FastAPI()
 
-
+manager = Manager()
 
 
 
@@ -14,5 +14,5 @@ def root():
 
 @app.get("/enter features/{features}")
 def names(features:str):
-    return f"the result of your features, is: {Manager.classifiication_result(features)}"
+    return f"the result of your features, is: {manager.classifiication_result(features)}"
 

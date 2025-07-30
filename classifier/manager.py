@@ -3,6 +3,9 @@ import requests
 import pickle
 
 class Manager:
+    def __init__(self):
+        self.classifier = Classifier(Manager.get_fit_data(), Manager.get_value_counts())
+    
     @staticmethod
     def get_fit_data():
         data_response = requests.get("http://model-runing:8000/get fit data")
@@ -17,8 +20,7 @@ class Manager:
         value_count = pickle.loads(bytes.fromhex(value_counts_response.json()))
         return value_count
 
-    @staticmethod
-    def classifiication_result(string_of_features):
-        fit_data = Manager.get_fit_data()
-        value_counts = Manager.get_value_counts()
-        return Classifier(fit_data, value_counts).classifies(string_of_features.split(","))
+    
+    def classifiication_result(self, string_of_features):
+        
+        return self.claasifier.classifies(string_of_features.split(","))
